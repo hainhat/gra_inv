@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <title>Đăng ký</title>
+    {{head}}
+    <script src="/js/api_client.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/auth_guard.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async></script>
+</head>
+<body class="min-h-screen">
+{{header}}
+<div class="min-h-screen flex flex-col items-center justify-center p-4">
+    <div class="grid md:grid-cols-2 items-center gap-4 max-md:gap-8 max-w-6xl max-md:max-w-lg w-full p-4 [box-shadow:0_2px_10px_-3px_rgba(6,81,237,0.3)] rounded-md">
+
+        <!-- Form đăng ký -->
+        <div class="md:max-w-md w-full px-4 py-4">
+            <form id="registerForm">
+                <div class="mb-12">
+                    <h1 class="text-slate-900 text-3xl font-bold">Sign up</h1>
+                    <p class="text-[15px] mt-6 text-slate-600">
+                        Already have an account?
+                        <a href="/login" class="text-blue-600 font-medium hover:underline ml-1 whitespace-nowrap">Login here</a>
+                    </p>
+                </div>
+
+                <!-- Họ và tên -->
+                <div>
+                    <label class="text-slate-900 text-[13px] font-medium block mb-2">Full name</label>
+                    <input name="full_name" type="text" required
+                           class="w-full text-slate-900 text-sm border-b border-slate-300 focus:border-blue-600 pl-2 pr-2 py-3 outline-none"
+                           placeholder="Enter your full name"/>
+                </div>
+
+                <!-- Email -->
+                <div class="mt-8">
+                    <label class="text-slate-900 text-[13px] font-medium block mb-2">Email</label>
+                    <input name="email" type="email" required
+                           class="w-full text-slate-900 text-sm border-b border-slate-300 focus:border-blue-600 pl-2 pr-2 py-3 outline-none"
+                           placeholder="Enter email"/>
+                </div>
+
+                <!-- Phone -->
+                <div class="mt-8">
+                    <label class="text-slate-900 text-[13px] font-medium block mb-2">Phone</label>
+                    <input name="phone" type="tel"
+                           class="w-full text-slate-900 text-sm border-b border-slate-300 focus:border-blue-600 pl-2 pr-2 py-3 outline-none"
+                           placeholder="Enter phone number"/>
+                </div>
+
+                <!-- Password -->
+                <div class="mt-8 relative">
+                    <label class="text-slate-900 text-[13px] font-medium block mb-2">Password</label>
+                    <div class="relative flex items-center">
+                        <input name="password" id="password" type="password" required
+                               class="w-full text-slate-900 text-sm border-b border-slate-300 focus:border-blue-600 pl-2 pr-8 py-3 outline-none"
+                               placeholder="Enter password"/>
+                        <!-- Icon con mắt -->
+                        <svg id="togglePassword" xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb"
+                             class="w-[18px] h-[18px] absolute right-2 cursor-pointer select-none"
+                             viewBox="0 0 128 128">
+                            <path d="M64 104C22.127 104 1.367 67.496.504 65.943a4 4 0 0 1 0-3.887C1.367 60.504 22.127 24 64 24s62.633 36.504 63.496 38.057a4 4 0 0 1 0 3.887C126.633 67.496 105.873 104 64 104zM8.707 63.994C13.465 71.205 32.146 96 64 96c31.955 0 50.553-24.775 55.293-31.994C114.535 56.795 95.854 32 64 32 32.045 32 13.447 56.775 8.707 63.994zM64 88c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24z"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Confirm password -->
+                <div class="mt-8 relative">
+                    <label class="text-slate-900 text-[13px] font-medium block mb-2">Confirm password</label>
+                    <div class="relative flex items-center">
+                        <input name="confirm_password" id="confirmPassword" type="password" required
+                               class="w-full text-slate-900 text-sm border-b border-slate-300 focus:border-blue-600 pl-2 pr-8 py-3 outline-none"
+                               placeholder="Confirm your password"/>
+                        <!-- Icon con mắt -->
+                        <svg id="toggleConfirm" xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb"
+                             class="w-[18px] h-[18px] absolute right-2 cursor-pointer select-none"
+                             viewBox="0 0 128 128">
+                            <path d="M64 104C22.127 104 1.367 67.496.504 65.943a4 4 0 0 1 0-3.887C1.367 60.504 22.127 24 64 24s62.633 36.504 63.496 38.057a4 4 0 0 1 0 3.887C126.633 67.496 105.873 104 64 104zM8.707 63.994C13.465 71.205 32.146 96 64 96c31.955 0 50.553-24.775 55.293-31.994C114.535 56.795 95.854 32 64 32 32.045 32 13.447 56.775 8.707 63.994zM64 88c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24z"/>
+                        </svg>
+                    </div>
+                    <p id="passwordError" class="text-red-600 text-xs mt-2 hidden">Passwords do not match.</p>
+                </div>
+
+                <!-- Submit -->
+                <div class="mt-12">
+                    <button type="submit"
+                            class="w-full shadow-xl py-2.5 px-4 text-sm font-medium tracking-wide rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none cursor-pointer">
+                        Register
+                    </button>
+                </div>
+                <div class="my-6 flex items-center gap-4">
+                    <hr class="w-full border-slate-300"/>
+                    <p class="text-sm text-slate-900 text-center">or</p>
+                    <hr class="w-full border-slate-300"/>
+                </div>
+                <div class="mt-1">
+                    <div id="g_id_onload"
+                         data-client_id="160924728426-ah1mm67lgc5bckgmt1tvcc5apsjn0n7g.apps.googleusercontent.com"
+                         data-context="signin"
+                         data-ux_mode="popup"
+                         data-callback="handleGoogleLogin"
+                         data-auto_prompt="false">
+                    </div>
+                    <div class="g_id_signin"
+                         data-type="standard"
+                         data-shape="pill"
+                         data-theme="filled_blue"
+                         data-text="signup_with"
+                         data-size="large"
+                         data-logo_alignment="left">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Hình ảnh -->
+        <div class="w-full h-full flex items-center bg-[#000842] rounded-xl p-8">
+            <img src="https://readymadeui.com/signin-image.webp" class="w-full aspect-[12/12] object-contain"
+                 alt="register-image"/>
+        </div>
+    </div>
+</div>
+{{footer}}
+<script>
+// Google Sign-In callback
+function handleGoogleLogin(response) {
+    // Show loading state
+    const googleBtn = document.querySelector('.g_id_signin');
+    if (googleBtn) {
+        googleBtn.style.opacity = '0.5';
+        googleBtn.style.pointerEvents = 'none';
+    }
+    // Send JWT to backend
+    fetch('/api/auth/google/verify', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            credential: response.credential
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            // Save tokens to localStorage
+            localStorage.setItem('access_token', data.access_token);
+            localStorage.setItem('refresh_token', data.refresh_token);
+            
+            // Redirect to home page
+            window.location.href = '/';
+        } else {
+            alert('Login failed: ' + (data.message || 'Unknown error'));
+            // Reset button state
+            if (googleBtn) {
+                googleBtn.style.opacity = '1';
+                googleBtn.style.pointerEvents = 'auto';
+            }
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Login failed. Please try again.');
+        // Reset button state
+        if (googleBtn) {
+            googleBtn.style.opacity = '1';
+            googleBtn.style.pointerEvents = 'auto';
+        }
+    });
+}
+</script>
+</body>
+</html>

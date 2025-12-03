@@ -1,0 +1,73 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Flowbite -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet">
+    <!-- Flowbite JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+    <!-- Custom CSS -->
+    <!-- <link rel="stylesheet" href="/css/style.css"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: "Shantell Sans", cursive;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: normal;
+            font-variation-settings:
+                    "BNCE" 0,
+                    "INFM" 0,
+                    "SPAC" 0;
+            font-size: 20px;
+        }
+
+        /* Custom animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom button hover effect */
+        button:hover {
+            transform: translateY(-2px);
+            transition: all 0.3s ease;
+        }
+
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+            /*background-color: #9cf;*/
+            /*background-image: -webkit-gradient(linear, left top, left bottom, from(#6af), to(#bdf));*/
+            /*background-image: -webkit-linear-gradient(#6af, #bdf);*/
+            /*background-image: -moz-linear-gradient(#6af, #bdf);*/
+            /*background-image: linear-gradient(#6af, #bdf);*/
+            background: linear-gradient(180deg, #1e3a5f 0%, #2C3E50 100%);
+        }
+
+
+    </style>
+
+</head>
