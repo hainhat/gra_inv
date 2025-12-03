@@ -7,7 +7,7 @@ class RSVPMessagesManager {
         this.loadMoreBtnContainer = document.getElementById('loadMoreContainer');
 
         // Config
-        this.API_BASE_URL = 'http://localhost:8080/api';
+        this.API_BASE_URL = '/api';
         this.PAGE_SIZE = 3;
 
         // State
