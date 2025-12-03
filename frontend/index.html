@@ -533,7 +533,7 @@
     // Load introduction text
     async function loadIntroductionText() {
         try {
-            const response = await fetch('http://localhost:8080/api/settings/introduction_text');
+            const response = await fetch('/api/settings/introduction_text');
             const data = await response.json();
 
             if (data.success) {
