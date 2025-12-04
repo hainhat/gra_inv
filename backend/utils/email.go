@@ -2,12 +2,12 @@ package utils
 
 import (
 	"bytes"
+	"context"
 	"fmt"
 	"html/template"
 	"os"
-	"strconv"
 
-	gomail "gopkg.in/gomail.v2"
+	brevo "github.com/getbrevo/brevo-go/lib"
 )
 
 type EmailData struct {
@@ -15,19 +15,15 @@ type EmailData struct {
 }
 
 func SendRSVPConfirmation(toEmail, guestName string) error {
-	// Load SMTP config
-	smtpHost := os.Getenv("SMTP_HOST")
-	smtpPort, _ := strconv.Atoi(os.Getenv("SMTP_PORT"))
-	fromEmail := os.Getenv("SMTP_EMAIL")
-	password := os.Getenv("SMTP_PASSWORD")
+	apiKey := os.Getenv("BREVO_API_KEY")
+	if apiKey == "" {
+		return fmt.Errorf("BREVO_API_KEY is not set")
+	}
 
-	// Create message
-	m := gomail.NewMessage()
-
-	// Set headers
-	m.SetHeader("From", fromEmail)
-	m.SetHeader("To", toEmail)
-	m.SetHeader("Subject", "Xác nhận tham dự - Lễ Tốt Nghiệp")
+	// Create Brevo API client
+	cfg := brevo.NewConfiguration()
+	cfg.AddDefaultHeader("api-key", apiKey)
+	client := brevo.NewAPIClient(cfg)
 
 	// HTML template đơn giản
 	htmlTemplate := `
@@ -98,7 +94,7 @@ func SendRSVPConfirmation(toEmail, guestName string) error {
 		return fmt.Errorf("template parse error: %v", err)
 	}
 
-	// Prepare data - chỉ cần họ tên
+	// Prepare data
 	data := EmailData{
 		GuestName: guestName,
 	}
@@ -109,14 +105,35 @@ func SendRSVPConfirmation(toEmail, guestName string) error {
 		return fmt.Errorf("template execute error: %v", err)
 	}
 
-	// Set body as HTML
-	m.SetBody("text/html", body.String())
+	// Get sender email from env or use default
+	senderEmail := os.Getenv("SENDER_EMAIL")
+	senderName := os.Getenv("SENDER_NAME")
+	if senderEmail == "" {
+		senderEmail = "noreply@example.com"
+	}
+	if senderName == "" {
+		senderName = "Tô Hải Nhật"
+	}
 
-	// Create dialer
-	d := gomail.NewDialer(smtpHost, smtpPort, fromEmail, password)
+	// Create email request
+	sendSmtpEmail := brevo.SendSmtpEmail{
+		Sender: &brevo.SendSmtpEmailSender{
+			Name:  senderName,
+			Email: senderEmail,
+		},
+		To: []brevo.SendSmtpEmailTo{
+			{
+				Email: toEmail,
+				Name:  guestName,
+			},
+		},
+		Subject:     "Xác nhận tham dự - Lễ Tốt Nghiệp",
+		HtmlContent: body.String(),
+	}
 
 	// Send email
-	if err := d.DialAndSend(m); err != nil {
+	_, _, err = client.TransactionalEmailsApi.SendTransacEmail(context.Background(), sendSmtpEmail)
+	if err != nil {
 		return fmt.Errorf("send email error: %v", err)
 	}
 
