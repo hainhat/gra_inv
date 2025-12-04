@@ -96,12 +96,12 @@
                 <table class="w-full">
                     <thead class="bg-gray-50">
                     <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">ID</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Phone</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Role</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+
                     </tr>
                     </thead>
                     <tbody id="usersTableBody" class="divide-y divide-gray-200"></tbody>
@@ -125,7 +125,7 @@
                 <table class="w-full">
                     <thead class="bg-gray-50">
                     <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">ID</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Phone</th>
@@ -133,7 +133,7 @@
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Guests</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Message</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+
                     </tr>
                     </thead>
                     <tbody id="rsvpsTableBody" class="divide-y divide-gray-200"></tbody>
@@ -334,7 +334,11 @@
                 const tbody = document.getElementById('usersTableBody');
                 tbody.innerHTML = data.data.map(u => `
                         <tr>
-                            <td class="px-6 py-4">${u.id}</td>
+                            <td class="px-6 py-4">
+                                <button onclick="editUser(${u.id})" class="text-blue-600 hover:text-blue-800 mr-3">Edit</button>
+                                <button onclick="deleteUser(${u.id})" class="text-red-600 hover:text-red-800">Delete</button>
+                            </td>
+
                             <td class="px-6 py-4">${u.full_name}</td>
                             <td class="px-6 py-4">${u.email}</td>
                             <td class="px-6 py-4">${u.phone}</td>
@@ -343,10 +347,7 @@
                                     ${u.role}
                                 </span>
                             </td>
-                            <td class="px-6 py-4">
-                                <button onclick="editUser(${u.id})" class="text-blue-600 hover:text-blue-800 mr-3">Edit</button>
-                                <button onclick="deleteUser(${u.id})" class="text-red-600 hover:text-red-800">Delete</button>
-                            </td>
+
                         </tr>
                     `).join('');
 
@@ -372,7 +373,11 @@
                 const tbody = document.getElementById('rsvpsTableBody');
                 tbody.innerHTML = data.data.map(r => `
                         <tr>
-                            <td class="px-6 py-4">${r.id}</td>
+                            <td class="px-6 py-4">
+                                <button onclick="editRSVP(${r.id})" class="text-blue-600 hover:text-blue-800 mr-3">Edit</button>
+                                <button onclick="deleteRSVP(${r.id})" class="text-red-600 hover:text-red-800">Delete</button>
+                            </td>
+
                             <td class="px-6 py-4">${r.user?.full_name || r.guest_name}</td>
                             <td class="px-6 py-4">${r.display_email || '-'}</td>
                             <td class="px-6 py-4">${r.display_phone || '-'}</td>
@@ -392,10 +397,7 @@
                             </td>
                             <td class="px-6 py-4">${r.guest_count}</td>
                             <td class="px-6 py-4 max-w-xs truncate">${r.message || '-'}</td>
-                            <td class="px-6 py-4">
-                                <button onclick="editRSVP(${r.id})" class="text-blue-600 hover:text-blue-800 mr-3">Edit</button>
-                                <button onclick="deleteRSVP(${r.id})" class="text-red-600 hover:text-red-800">Delete</button>
-                            </td>
+
                         </tr>
                     `).join('');
 
