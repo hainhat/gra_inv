@@ -42,6 +42,9 @@ func main() {
 	r.GET("/admin", func(c *gin.Context) {
 		utils.RenderHTMLWithPartials(c, "./frontend/admin.html")
 	})
+	r.GET("/ping", func(c *gin.Context) {
+		c.String(200, "pong")
+	})
 	hashedPassword, _ := bcrypt.GenerateFromPassword([]byte("admin123"), bcrypt.DefaultCost)
 
 	admin := models.User{
