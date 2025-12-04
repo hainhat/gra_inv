@@ -13,7 +13,8 @@ import (
 var DB *gorm.DB
 
 func ConnectDB() {
-	dsn := "host=dpg-d4nupier433s73eeqou0-a user=gra_inv_user password=bhrUNR5HobTAZq4kDTD81GEuy3Wp9tZi dbname=gra_inv port=5432 sslmode=disable"
+	dsn := "host=dpg-d4nupier433s73eeqou0-a.singapore-postgres.render.com user=gra_inv_user password=bhrUNR5HobTAZq4kDTD81GEuy3Wp9tZi dbname=gra_inv port=5432 sslmode=require"
+	// dsn := "host=dpg-d4nupier433s73eeqou0-a user=gra_inv_user password=bhrUNR5HobTAZq4kDTD81GEuy3Wp9tZi dbname=gra_inv port=5432 sslmode=disable"
 
 	var err error
 	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{
