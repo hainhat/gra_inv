@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Quill.js 2.0.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <style>
+        .ql-editor { min-height: 200px; }
+        .ql-container { font-size: 16px; }
+    </style>
 </head>
 <body class="bg-gray-50">
 <!-- Login Screen -->
@@ -619,7 +626,10 @@
         }
     }
 
-    // Render settings
+    // Store Quill instances
+    let quillInstances = {};
+
+    // Render settings with Quill editor
     function renderSettings(settings) {
         const container = document.getElementById('settingsList');
         container.innerHTML = settings.map(setting => `
@@ -627,11 +637,7 @@
             <h3 class="font-bold text-lg mb-2">${setting.key}</h3>
             <p class="text-sm text-gray-600 mb-4">${setting.description || ''}</p>
 
-            <textarea
-                id="setting_${setting.key}"
-                class="w-full p-3 border rounded mb-3"
-                rows="4"
-            >${setting.value}</textarea>
+            <div id="editor_${setting.key}" class="bg-white border rounded mb-3"></div>
 
             <button
                 onclick="updateSetting('${setting.key}')"
@@ -641,11 +647,31 @@
             </button>
         </div>
     `).join('');
+
+        // Initialize Quill for each setting
+        settings.forEach(setting => {
+            quillInstances[setting.key] = new Quill(`#editor_${setting.key}`, {
+                theme: 'snow',
+                modules: {
+                    toolbar: [
+                        [{ 'header': [1, 2, 3, false] }],
+                        ['bold', 'italic', 'underline', 'strike'],
+                        [{ 'color': [] }, { 'background': [] }],
+                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                        [{ 'align': [] }],
+                        ['link'],
+                        ['clean']
+                    ]
+                }
+            });
+            quillInstances[setting.key].root.innerHTML = setting.value || '';
+        });
     }
 
-    // Update setting
+    // Update setting - get content from Quill
     async function updateSetting(key) {
-        const value = document.getElementById(`setting_${key}`).value;
+        const quill = quillInstances[key];
+        const value = quill ? quill.root.innerHTML : '';
 
         try {
             const res = await fetch(`${API_URL}/admin/settings/${key}`, {

@@ -105,11 +105,22 @@ document.addEventListener("DOMContentLoaded", async () => {
                         }
                     }
                 } else {
-                    // Nếu là guest thì reset form để nhập tiếp nếu muốn
-                    form.reset();
+                    // Nếu là guest thì ẩn form và hiển thị cảm ơn
+                    // Khi reload trang thì form sẽ hiển thị lại
+                    form.classList.add('hidden');
+                    if (notice) notice.classList.add('hidden');
+                    
+                    let successMsg = document.getElementById('successMessage');
+                    if (successMsg) {
+                        successMsg.classList.remove('hidden');
+                        successMsg.scrollIntoView({ behavior: 'smooth' });
+                        
+                        // Trigger the tree animation
+                        if (typeof window.startTreeAnimation === 'function') {
+                            window.startTreeAnimation();
+                        }
+                    }
                 }
-
-
 
                 // Reload messages if function exists
                 if (typeof window.reloadRSVPMessages === 'function') {

@@ -4,6 +4,8 @@
     <title>Thiệp Mời</title>
     {{head}}
     <link rel="stylesheet" href="/css/style.css">
+    <!-- Sal.js CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/sal.js/dist/sal.css">
     <script src="/js/api_client.js"></script>
     <script src="/js/main.js"></script>
     <script src="/js/rsvp.js"></script>
@@ -97,16 +99,39 @@
             margin: 20px auto;
             display: block;
         }
+        .name {
+            font-weight: bold;
+            background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            padding-bottom: 0.3em;
+        }
 
+        /* Quill content styles for introductionText */
+        #introductionText h1 { font-size: 2em; font-weight: bold; margin: 0.5em 0; }
+        #introductionText h2 { font-size: 1.5em; font-weight: bold; margin: 0.5em 0; }
+        #introductionText h3 { font-size: 1.17em; font-weight: bold; margin: 0.5em 0; }
+        #introductionText p { margin: 0.5em 0; }
+        #introductionText strong { font-weight: bold; }
+        #introductionText em { font-style: italic; }
+        #introductionText u { text-decoration: underline; }
+        #introductionText s { text-decoration: line-through; }
+        #introductionText ul, #introductionText ol { padding-left: 1.5em; margin: 0.5em 0; }
+        #introductionText li { margin: 0.25em 0; }
+        #introductionText a { color: #3b82f6; text-decoration: underline; }
+        #introductionText .ql-align-center { text-align: center; }
+        #introductionText .ql-align-right { text-align: right; }
+        #introductionText .ql-align-justify { text-align: justify; }
     </style>
 </head>
-<body class="min-h-screen">
+<body class="midnight-mist-bg">
 {{header}}
-<audio autoplay loop>
+<!-- <audio autoplay loop>
     <source src="https://zingmp3.vn/album/Buoc-Qua-Doi-Nhau-Single-Le-Bao-Binh/Z8W0DI7O.html" type="audio/mpeg">
-</audio>
+</audio> -->
 <!-- Hero Section -->
-<section class="container mx-auto px-4 py-16 text-center">
+<section class="container mx-auto px-4 py-4 text-center">
     <div class="max-w-3xl mx-auto px-4">
         <!-- Avatar -->
         <!--        <img src="/assets/images/avatar.jpg"-->
@@ -114,19 +139,82 @@
         <!--             class="w-32 h-32 rounded-full mx-auto mb-6 shadow-lg border-4 border-white">-->
 
         <!-- Title -->
-        <h1 class="christmas-rainbow text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold text-red-600 mb-4 px-2 leading-tight">
+        <h1 class="christmas-rainbow text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold text-red-600 mb-4 px-2 leading-tight"
+            data-sal="zoom-in"
+            data-sal-duration="800"
+            data-sal-easing="ease-out-back">
             "CONGRADUATIONS"
         </h1>
 
-        <p class="text-xl sm:text-2xl text-white mb-2 px-4">
+        <p class="name text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white mb-2 px-4 font-bold"
+           data-sal="fade"
+           data-sal-delay="200"
+           data-sal-duration="600">
             Tô Hải Nhật
         </p>
 
-        <p class="text-base sm:text-lg md:text-xl text-gray-200 mb-8 px-4">
+        <p class="text-base sm:text-lg md:text-xl text-gray-200 mb-8 px-4"
+           data-sal="fade"
+           data-sal-delay="400"
+           data-sal-duration="600">
             Khoa Công Nghệ Thông Tin<br>
             Trường Đại học Mở TP. Hồ Chí Minh
         </p>
-        <div class="bg-white rounded-2xl shadow-xl p-8 mb-8 w-full max-w-screen-lg mx-auto">
+        <!-- Countdown Timer -->
+        <div class="flex items-center justify-center w-full gap-2 sm:gap-3 md:gap-4 lg:gap-6 count-down-main px-4"
+             data-sal="zoom-in"
+             data-sal-delay="700"
+             data-sal-duration="800">
+            <!-- Ngày -->
+            <div class="timer">
+                <div class="rounded-xl py-2 sm:py-3 px-2 sm:px-3 min-w-[70px] sm:min-w-[90px]
+                flex items-center justify-center flex-col gap-1 aspect-square shadow-lg"
+                style="background: linear-gradient(to right, #6be585, #dd3e54);">
+                    <h3 class="countdown-element days font-manrope font-semibold
+                 text-lg sm:text-xl md:text-2xl text-white text-center drop-shadow-md">
+                    </h3>
+                    <p class="text-sm sm:text-base font-manrope font-normal text-white mt-1 text-center w-full">Ngày</p>
+                </div>
+            </div>
+            <!-- Giờ -->
+            <div class="timer">
+                <div class="rounded-xl py-2 sm:py-3 px-2 sm:px-3 min-w-[70px] sm:min-w-[90px]
+                flex items-center justify-center flex-col gap-1 aspect-square shadow-lg"
+                style="background: linear-gradient(to right, #6be585, #dd3e54);">
+                    <h3 class="countdown-element hours font-manrope font-semibold
+                 text-lg sm:text-xl md:text-2xl text-white text-center drop-shadow-md">
+                    </h3>
+                    <p class="text-sm sm:text-base font-manrope font-normal text-white mt-1 text-center w-full">Giờ</p>
+                </div>
+            </div>
+            <!-- Phút -->
+            <div class="timer">
+                <div class="rounded-xl py-2 sm:py-3 px-2 sm:px-3 min-w-[70px] sm:min-w-[90px]
+                flex items-center justify-center flex-col gap-1 aspect-square shadow-lg"
+                style="background: linear-gradient(to right, #6be585, #dd3e54);">
+                    <h3 class="countdown-element minutes font-manrope font-semibold
+                 text-lg sm:text-xl md:text-2xl text-white text-center drop-shadow-md">
+                    </h3>
+                    <p class="text-sm sm:text-base font-manrope font-normal text-white mt-1 text-center w-full">Phút</p>
+                </div>
+            </div>
+            <!-- Giây -->
+            <div class="timer">
+                <div class="rounded-xl py-2 sm:py-3 px-2 sm:px-3 min-w-[70px] sm:min-w-[90px]
+                flex items-center justify-center flex-col gap-1 aspect-square shadow-lg"
+                style="background: linear-gradient(to right, #6be585, #dd3e54);">
+                    <h3 class="countdown-element seconds font-manrope font-semibold
+                 text-lg sm:text-xl md:text-2xl text-white text-center drop-shadow-md">
+                    </h3>
+                    <p class="text-sm sm:text-base font-manrope font-normal text-white mt-1 text-center w-full">Giây</p>
+                </div>
+            </div>
+        </div>
+        <!-- Nội dung sự kiện -->
+        <div class="bg-white rounded-2xl shadow-xl p-8 mb-8 w-full max-w-screen-lg mx-auto mt-8"
+             data-sal="slide-up"
+             data-sal-delay="500"
+             data-sal-duration="700">
             <div id="introductionText" class="text-lg text-gray-600 mb-8 leading-relaxed text-left">
                 <!-- Nội dung sẽ được load từ API -->
             </div>
@@ -134,7 +222,10 @@
 
 
         <!-- DateTime & Location Card -->
-        <div class="bg-white rounded-2xl shadow-xl p-8 mb-8 w-full max-w-screen-lg mx-auto">
+        <div class="bg-white rounded-2xl shadow-xl p-8 mb-8 w-full max-w-screen-lg mx-auto"
+             data-sal="slide-up"
+             data-sal-delay="1000"
+             data-sal-duration="700">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 text-left">
                 <!-- Thời gian -->
                 <div class="flex items-start space-x-3">
@@ -209,59 +300,15 @@
             </div>
         </div>
 
-        <!-- Countdown Timer -->
-        <div class="flex items-center justify-center w-full gap-2 sm:gap-3 md:gap-4 lg:gap-6 count-down-main px-4">
-            <!-- Ngày -->
-            <div class="timer">
-                <div class="rounded-xl bg-gradient-to-b from-red-600 to-green-600
-                py-2 sm:py-3 px-2 sm:px-3 min-w-[70px] sm:min-w-[90px]
-                flex items-center justify-center flex-col gap-1 aspect-square">
-                    <h3 class="countdown-element days font-manrope font-semibold
-                 text-lg sm:text-xl md:text-2xl text-white text-center">
-                    </h3>
-                    <p class="text-sm sm:text-base font-manrope font-normal text-white mt-1 text-center w-full">Ngày</p>
-                </div>
-            </div>
-            <!-- Giờ -->
-            <div class="timer">
-                <div class="rounded-xl bg-gradient-to-b from-red-600 to-green-600
-                py-2 sm:py-3 px-2 sm:px-3 min-w-[70px] sm:min-w-[90px]
-                flex items-center justify-center flex-col gap-1 aspect-square">
-                    <h3 class="countdown-element hours font-manrope font-semibold
-                 text-lg sm:text-xl md:text-2xl text-white text-center">
-                    </h3>
-                    <p class="text-sm sm:text-base font-manrope font-normal text-white mt-1 text-center w-full">Giờ</p>
-                </div>
-            </div>
-            <!-- Phút -->
-            <div class="timer">
-                <div class="rounded-xl bg-gradient-to-b from-red-600 to-green-600
-                py-2 sm:py-3 px-2 sm:px-3 min-w-[70px] sm:min-w-[90px]
-                flex items-center justify-center flex-col gap-1 aspect-square">
-                    <h3 class="countdown-element minutes font-manrope font-semibold
-                 text-lg sm:text-xl md:text-2xl text-white text-center">
-                    </h3>
-                    <p class="text-sm sm:text-base font-manrope font-normal text-white mt-1 text-center w-full">Phút</p>
-                </div>
-            </div>
-            <!-- Giây -->
-            <div class="timer">
-                <div class="rounded-xl bg-gradient-to-b from-red-600 to-green-600
-                py-2 sm:py-3 px-2 sm:px-3 min-w-[70px] sm:min-w-[90px]
-                flex items-center justify-center flex-col gap-1 aspect-square">
-                    <h3 class="countdown-element seconds font-manrope font-semibold
-                 text-lg sm:text-xl md:text-2xl text-white text-center">
-                    </h3>
-                    <p class="text-sm sm:text-base font-manrope font-normal text-white mt-1 text-center w-full">Giây</p>
-                </div>
-            </div>
-        </div>
+        
     </div>
 </section>
 
 <!-- RSVP Form Section -->
-<section class="container mx-auto px-4 py-12">
-    <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-xl p-8">
+<section class="container mx-auto px-4 py-4 mt-0">
+    <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-xl p-8"
+         data-sal="slide-up"
+         data-sal-duration="700">
         <h2 class="text-2xl sm:text-3xl font-bold text-red-600 mb-6 text-center px-4">
 <!--            Xác Nhận Tham Dự-->
         </h2>
@@ -276,7 +323,7 @@
 
             <div>
                 <label for="rsvp_email" class="block text-sm font-medium text-gray-700">Email</label>
-                <input id="rsvp_email" name="email" type="email" required
+                <input placeholder="Nhập đúng để nhận thông báo qua email nhé" id="rsvp_email" name="email" type="email" required
                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-green-500 focus:border-green-500">
             </div>
 
@@ -419,7 +466,9 @@
 <!-- RSVP Messages Section with Infinite Scroll -->
 <section class="container mx-auto px-4 py-12">
     <div class="max-w-3xl mx-auto px-4">
-        <div class="bg-white rounded-lg shadow-lg p-6">
+        <div class="bg-white rounded-lg shadow-lg p-6"
+             data-sal="slide-up"
+             data-sal-duration="700">
             <!-- Header -->
             <div class="flex items-center justify-between mb-6 pb-4 border-b">
                 <h2 class="text-2xl font-bold text-gray-800 flex items-center gap-2">
@@ -557,6 +606,15 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/Physics2DPlugin.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/EasePack.min.js"></script>
 <script src="/js/tree.js"></script>
+<!-- Sal.js -->
+<script src="https://unpkg.com/sal.js/dist/sal.js"></script>
+<script>
+    // Initialize Sal.js
+    sal({
+        threshold: 0.1,
+        once: true
+    });
+</script>
 {{footer}}
 </body>
 </html>
