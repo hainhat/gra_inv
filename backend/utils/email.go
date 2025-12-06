@@ -76,9 +76,9 @@ func SendRSVPConfirmation(toEmail, guestName string) error {
         <div class="container">
             <div class="content">
                 <h2>Xin chào {{.GuestName}}!</h2>
-                <p>Cảm ơn bạn đã dành thời gian phản hồi lời mời tham dự lễ tốt nghiệp của tôi.</p>
-				<p>Nếu có nhu cầu, hãy nhấp vào <a href="https://calendar.app.google/ns4vqiWnxy2PiYpdA">đây</a> để thêm sự kiện này vào ứng dụng Lịch (hoặc Google Calendar) và nhận thông báo nhé!</p>
-                <p>Chúc bạn thật nhiều sức khoẻ và niềm vui!</p>
+                <p>Cảm ơn bạn đã dành thời gian phản hồi lời mời tham dự lễ tốt nghiệp của mình.</p>
+				<p>Nếu có nhu cầu, hãy nhấp vào <a href="https://calendar.app.google/ns4vqiWnxy2PiYpdA">đây</a> để thêm sự kiện này vào ứng dụng Lịch trên điện thoại và nhận thông báo nhé!</p>
+                <p>Chúc bạn thật nhiều sức khoẻ, niềm vui và có một mùa Giáng Sinh an lành!</p>
             </div>
             <div class="footer">
                 <p>Trân trọng,<br><strong>Tô Hải Nhật</strong></p>
