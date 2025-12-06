@@ -45,18 +45,6 @@ func main() {
 	r.GET("/ping", func(c *gin.Context) {
 		c.String(200, "pong")
 	})
-	hashedPassword, _ := bcrypt.GenerateFromPassword([]byte("admin123"), bcrypt.DefaultCost)
-
-	admin := models.User{
-		Email:    "admin@graduation.com",
-		Password: string(hashedPassword),
-		FullName: "Admin",
-		Role:     "admin",
-	}
-	config.DB.FirstOrCreate(&admin, models.User{Email: admin.Email})
-	println("✅ Setup complete!")
-	println("Admin email: admin@graduation.com")
-	println("Admin password: admin123")
 
 	// API routes
 	routes.SetupRoutes(r)
