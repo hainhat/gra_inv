@@ -2,14 +2,14 @@ package main
 
 import (
 	"graduation_invitation/backend/config"
-	"graduation_invitation/backend/models"
+	_ "graduation_invitation/backend/models"
 	"graduation_invitation/backend/routes"
 	"graduation_invitation/backend/utils"
 	"log"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
-	"golang.org/x/crypto/bcrypt"
+	_ "golang.org/x/crypto/bcrypt"
 )
 
 func main() {
