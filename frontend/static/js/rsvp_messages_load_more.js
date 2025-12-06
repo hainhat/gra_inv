@@ -102,7 +102,7 @@ class RSVPMessagesManager {
 
     createMessageElement(msg) {
         const div = document.createElement('div');
-        div.className = 'flex gap-2.5 py-3 border-b border-gray-100 last:border-0';
+        div.className = 'flex gap-2.5 py-3 border-b border-gray-100 dark:border-gray-700 last:border-0';
 
         const timeAgo = this.formatTimeAgo(msg.created_at);
         const avatarUrl = msg.avatar || 'https://res.cloudinary.com/dcncfkvwv/image/upload/v1733476463/sum8iqnxhdgdyj6zcc2l.jpg';
@@ -116,14 +116,14 @@ class RSVPMessagesManager {
             </div>
             <div class="flex-1 min-w-0">
                 <div class="flex items-baseline justify-between mb-1 gap-2">
-                    <h3 class="font-semibold text-gray-900 text-sm truncate">
+                    <h3 class="font-semibold text-gray-900 dark:text-white text-sm truncate">
                         ${this.escapeHtml(msg.name)}
                     </h3>
-                    <span class="text-xs text-gray-400 flex-shrink-0">
+                    <span class="text-xs text-gray-400 dark:text-gray-500 flex-shrink-0">
                         ${timeAgo}
                     </span>
                 </div>
-                <p class="text-gray-700 text-sm break-words">
+                <p class="text-gray-700 dark:text-gray-300 text-sm break-words">
                     ${this.escapeHtml(msg.message)}
                 </p>
             </div>

@@ -11,9 +11,6 @@ import (
 // tạo secret key
 func getSecret() []byte {
 	secret := os.Getenv("JWT_SECRET")
-	if secret == "" {
-		return []byte("hjfdsakjvbgil")
-	}
 	return []byte(secret)
 }
 
@@ -24,7 +21,6 @@ func GenerateJWT(userID uint, role string) (string, error) {
 		"role": role,
 		"exp":  time.Now().Add(24 * time.Hour).Unix(), // hết hạn sau 1 ngày
 	}
-
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	return token.SignedString(getSecret())
 }
@@ -34,11 +30,9 @@ func ParseJWT(tokenString string) (jwt.MapClaims, error) {
 	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
 		return getSecret(), nil
 	})
-
 	if err != nil || !token.Valid {
 		return nil, err
 	}
-
 	claims, ok := token.Claims.(jwt.MapClaims)
 	if !ok {
 		return nil, err
@@ -54,7 +48,6 @@ func GenerateAccessToken(userID uint, role string) (string, error) {
 		"token_type": "access",
 		"exp":        time.Now().Add(15 * time.Minute).Unix(),
 	}
-
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	return token.SignedString(getSecret())
 }
@@ -67,7 +60,6 @@ func GenerateRefreshToken(userID uint, role string) (string, error) {
 		"token_type": "refresh",
 		"exp":        time.Now().Add(7 * 24 * time.Hour).Unix(),
 	}
-
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	return token.SignedString(getSecret())
 }
@@ -78,12 +70,10 @@ func ValidateRefreshToken(tokenString string) (jwt.MapClaims, error) {
 	if err != nil {
 		return nil, err
 	}
-
 	// Kiểm tra token type phải là "refresh"
 	tokenType, ok := claims["token_type"].(string)
 	if !ok || tokenType != "refresh" {
 		return nil, errors.New("invalid token type")
 	}
-
 	return claims, nil
 }

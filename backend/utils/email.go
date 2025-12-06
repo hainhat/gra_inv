@@ -20,12 +20,12 @@ func SendRSVPConfirmation(toEmail, guestName string) error {
 		return fmt.Errorf("BREVO_API_KEY is not set")
 	}
 
-	// Create Brevo API client
+	// tạo client Brevo API
 	cfg := brevo.NewConfiguration()
 	cfg.AddDefaultHeader("api-key", apiKey)
 	client := brevo.NewAPIClient(cfg)
 
-	// HTML template đơn giản
+	// HTML template
 	htmlTemplate := `
     <!DOCTYPE html>
     <html>
@@ -88,24 +88,24 @@ func SendRSVPConfirmation(toEmail, guestName string) error {
     </html>
     `
 
-	// Parse template
+	// parse template
 	tmpl, err := template.New("email").Parse(htmlTemplate)
 	if err != nil {
 		return fmt.Errorf("template parse error: %v", err)
 	}
 
-	// Prepare data
+	// chuẩn bị dữ liệu
 	data := EmailData{
 		GuestName: guestName,
 	}
 
-	// Execute template
+	// execute template
 	var body bytes.Buffer
 	if err := tmpl.Execute(&body, data); err != nil {
 		return fmt.Errorf("template execute error: %v", err)
 	}
 
-	// Get sender email from env or use default
+	// lấy thông tin người gửi từ env
 	senderEmail := os.Getenv("SENDER_EMAIL")
 	senderName := os.Getenv("SENDER_NAME")
 	if senderEmail == "" {
@@ -114,8 +114,7 @@ func SendRSVPConfirmation(toEmail, guestName string) error {
 	if senderName == "" {
 		senderName = "Tô Hải Nhật"
 	}
-
-	// Create email request
+	// tạo email request
 	sendSmtpEmail := brevo.SendSmtpEmail{
 		Sender: &brevo.SendSmtpEmailSender{
 			Name:  senderName,
@@ -130,8 +129,7 @@ func SendRSVPConfirmation(toEmail, guestName string) error {
 		Subject:     "Xác nhận tham dự - Lễ Tốt Nghiệp",
 		HtmlContent: body.String(),
 	}
-
-	// Send email
+	// send email
 	_, _, err = client.TransactionalEmailsApi.SendTransacEmail(context.Background(), sendSmtpEmail)
 	if err != nil {
 		return fmt.Errorf("send email error: %v", err)

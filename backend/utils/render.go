@@ -8,7 +8,6 @@ import (
 )
 
 func RenderHTMLWithPartials(c *gin.Context, htmlPath string) {
-	// Read main HTML
 	content, err := ioutil.ReadFile(htmlPath)
 	if err != nil {
 		c.String(500, "Error reading file")
@@ -17,19 +16,14 @@ func RenderHTMLWithPartials(c *gin.Context, htmlPath string) {
 
 	html := string(content)
 
-	// Replace {{header}} with actual header HTML
 	if strings.Contains(html, "{{header}}") {
 		header, _ := ioutil.ReadFile("./frontend/partials/header.html")
 		html = strings.Replace(html, "{{header}}", string(header), 1)
 	}
-
-	// Replace {{footer}} with actual footer HTML
 	if strings.Contains(html, "{{footer}}") {
 		footer, _ := ioutil.ReadFile("./frontend/partials/footer.html")
 		html = strings.Replace(html, "{{footer}}", string(footer), 1)
 	}
-
-	// Replace {{head}} with actual head HTML
 	if strings.Contains(html, "{{head}}") {
 		head, _ := ioutil.ReadFile("./frontend/partials/head.html")
 		html = strings.Replace(html, "{{head}}", string(head), 1)

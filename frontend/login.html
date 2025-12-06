@@ -11,11 +11,11 @@
 <body class="midnight-mist-bg">
 {{header}}
 <div class="min-h-screen flex flex-col items-center justify-start pt-8 sm:pt-12 p-4">
-    <div class="max-w-md w-full p-6 bg-white/10 backdrop-blur-md rounded-2xl shadow-xl">
+    <div class="max-w-md w-full p-6 bg-white dark:bg-white/10 backdrop-blur-md rounded-2xl shadow-xl">
         <div class="w-full px-4 py-4">
             <form id="loginForm">
                 <div class="mb-12">
-                    <h1 class="text-3xl font-bold text-white">Đăng nhập</h1>
+                    <h1 class="text-3xl font-bold text-gray-800 dark:text-white">Đăng nhập</h1>
                     <!-- <p class="text-[15px] mt-6 text-slate-600">Don't have an account <a href="/register"
                                                                                         class="text-blue-600 font-medium hover:underline ml-1 whitespace-nowrap">Register
                         here</a></p> -->
@@ -40,15 +40,15 @@
                 </div>
                 <div class="my-6 flex items-center gap-4">
                     <hr class="w-full border-slate-300"/>
-                    <p class="text-sm text-white text-center">hoặc</p>
+                    <p class="text-sm text-gray-600 dark:text-white text-center">hoặc</p>
                     <hr class="w-full border-slate-300"/>
                 </div>
                 <div>
-                    <label class="text-[13px] font-medium block mb-2 text-white">Email</label>
+                    <label class="text-[13px] font-medium block mb-2 text-gray-700 dark:text-white">Email</label>
                     <div class="relative flex items-center">
                         <input name="email" type="text" required
                                class="w-full text-slate-900 text-sm border-b border-slate-300 focus:border-blue-600 pl-2 pr-8 py-3 outline-none"
-                               placeholder="Enter email"/>
+                               placeholder="Nhập email"/>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb"
                              class="w-[18px] h-[18px] absolute right-2" viewBox="0 0 682.667 682.667">
                             <defs>
@@ -67,11 +67,11 @@
                     </div>
                 </div>
                 <div class="mt-8">
-                    <label class="text-[13px] font-medium block mb-2 text-white">Mật khẩu</label>
+                    <label class="text-[13px] font-medium block mb-2 text-gray-700 dark:text-white">Mật khẩu</label>
                     <div class="relative flex items-center">
                         <input id="password" name="password" type="password" required
                                class="w-full text-slate-900 text-sm border-b border-slate-300 focus:border-blue-600 pl-2 pr-8 py-3 outline-none"
-                               placeholder="Enter password"/>
+                               placeholder="Nhập mật khẩu"/>
                         <!-- Icon toggle -->
                         <svg id="togglePassword" xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb"
                              class="w-[18px] h-[18px] absolute right-2 cursor-pointer select-none"

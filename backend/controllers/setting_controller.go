@@ -12,7 +12,6 @@ import (
 // GET /api/settings/:key
 func GetSettingByKey(c *gin.Context) {
 	key := c.Param("key")
-
 	var setting models.Setting
 	if err := config.DB.Where("key = ?", key).First(&setting).Error; err != nil {
 		c.JSON(http.StatusNotFound, gin.H{
@@ -21,7 +20,6 @@ func GetSettingByKey(c *gin.Context) {
 		})
 		return
 	}
-
 	c.JSON(http.StatusOK, gin.H{
 		"success": true,
 		"data":    setting,
@@ -32,7 +30,6 @@ func GetSettingByKey(c *gin.Context) {
 // GET /api/admin/settings
 func AdminGetSettings(c *gin.Context) {
 	var settings []models.Setting
-
 	if err := config.DB.Order("key asc").Find(&settings).Error; err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"success": false,
@@ -40,7 +37,6 @@ func AdminGetSettings(c *gin.Context) {
 		})
 		return
 	}
-
 	c.JSON(http.StatusOK, gin.H{
 		"success": true,
 		"data":    settings,

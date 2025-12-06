@@ -8,7 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// RequireAdmin kiểm tra user phải có role admin
+// kiểm tra user phải có role admin
 func RequireAdmin() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		userCtx, exists := c.Get("user")
@@ -19,7 +19,6 @@ func RequireAdmin() gin.HandlerFunc {
 			})
 			return
 		}
-
 		user := userCtx.(models.User)
 		if user.Role != "admin" {
 			c.AbortWithStatusJSON(http.StatusForbidden, gin.H{
@@ -28,7 +27,6 @@ func RequireAdmin() gin.HandlerFunc {
 			})
 			return
 		}
-
 		c.Next()
 	}
 }

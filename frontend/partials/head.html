@@ -53,20 +53,32 @@
             transition: all 0.3s ease;
         }
 
-        /* Midnight Mist Background - from patterncraft.fun */
+        /* Background - Dark: Midnight Mist, Light: Soft Pastel Dream */
         .midnight-mist-bg {
             min-height: 100vh;
             width: 100%;
-            background-color: #000;
             position: relative;
+            background: #fff; /* fallback */
         }
 
+        /* Light mode - Aurora Dream Vivid Bloom */
         .midnight-mist-bg::before {
             content: '';
             position: fixed;
             inset: 0;
             z-index: 0;
             pointer-events: none;
+            background:
+                linear-gradient(270deg, #FFECB3 0%, #FFE0B2 20%, #FFCDD2 40%, #F8BBD9 60%, #E1BEE7 80%, #D1C4E9 100%);
+        }
+
+        /* Dark mode - Midnight Mist */
+        .dark .midnight-mist-bg {
+            background: #000;
+        }
+
+        .dark .midnight-mist-bg::before {
+            background: none;
             background-image:
                 radial-gradient(circle at 50% 100%, rgba(70, 85, 110, 0.5) 0%, transparent 60%),
                 radial-gradient(circle at 50% 100%, rgba(99, 102, 241, 0.4) 0%, transparent 70%),
@@ -88,10 +100,63 @@
 
     </style>
 
+    <!-- Tailwind Dark Mode Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+        // Apply saved theme immediately to prevent flash
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        } else {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+
+    <!-- Theme Toggle Styles -->
+    <style>
+        .theme-toggle {
+            position: relative;
+            width: 70px;
+            height: 32px;
+            background: linear-gradient(to right, #87CEEB, #FFD700);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            outline: none;
+        }
+        .dark .theme-toggle {
+            background: linear-gradient(to right, #1a1a2e, #4a4a6a);
+        }
+        .theme-toggle::before {
+            content: '☀️';
+            position: absolute;
+            left: 4px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .dark .theme-toggle::before {
+            content: '🌙';
+            left: calc(100% - 28px);
+            background: #2d2d44;
+        }
+    </style>
+
     <!-- 90's Cursor Effects - Snowflake -->
-    <script type="module">
+    <!-- <script type="module">
         import { snowflakeCursor } from "https://unpkg.com/cursor-effects@latest/dist/esm.js";
         new snowflakeCursor();
-    </script>
+    </script> -->
 
 </head>

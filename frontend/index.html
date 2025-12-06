@@ -61,6 +61,7 @@
             height: 90%;
             visibility: hidden;
         }
+
         .mountains-of-christmas-bold {
             font-family: "Mountains of Christmas", serif;
             font-weight: 700;
@@ -99,30 +100,90 @@
             margin: 20px auto;
             display: block;
         }
+
+        /* Light mode - Name gradient */
         .name {
             font-weight: bold;
-            background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
+            background: linear-gradient(to bottom right, #000C40, #607D8B);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
             line-height: 1;
             padding-bottom: 0.3em;
         }
 
+        /* Dark mode - Name gradient */
+        .dark .name {
+            background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
         /* Quill content styles for introductionText */
-        #introductionText h1 { font-size: 2em; font-weight: bold; margin: 0.5em 0; }
-        #introductionText h2 { font-size: 1.5em; font-weight: bold; margin: 0.5em 0; }
-        #introductionText h3 { font-size: 1.17em; font-weight: bold; margin: 0.5em 0; }
-        #introductionText p { margin: 0.5em 0; }
-        #introductionText strong { font-weight: bold; }
-        #introductionText em { font-style: italic; }
-        #introductionText u { text-decoration: underline; }
-        #introductionText s { text-decoration: line-through; }
-        #introductionText ul, #introductionText ol { padding-left: 1.5em; margin: 0.5em 0; }
-        #introductionText li { margin: 0.25em 0; }
-        #introductionText a { color: #3b82f6; text-decoration: underline; }
-        #introductionText .ql-align-center { text-align: center; }
-        #introductionText .ql-align-right { text-align: right; }
-        #introductionText .ql-align-justify { text-align: justify; }
+        #introductionText h1 {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 0.5em 0;
+        }
+
+        #introductionText h2 {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin: 0.5em 0;
+        }
+
+        #introductionText h3 {
+            font-size: 1.17em;
+            font-weight: bold;
+            margin: 0.5em 0;
+        }
+
+        #introductionText p {
+            margin: 0.5em 0;
+        }
+
+        #introductionText strong {
+            font-weight: bold;
+        }
+
+        #introductionText em {
+            font-style: italic;
+        }
+
+        #introductionText u {
+            text-decoration: underline;
+        }
+
+        #introductionText s {
+            text-decoration: line-through;
+        }
+
+        #introductionText ul, #introductionText ol {
+            padding-left: 1.5em;
+            margin: 0.5em 0;
+        }
+
+        #introductionText li {
+            margin: 0.25em 0;
+        }
+
+        #introductionText a {
+            color: #3b82f6;
+            text-decoration: underline;
+        }
+
+        #introductionText .ql-align-center {
+            text-align: center;
+        }
+
+        #introductionText .ql-align-right {
+            text-align: right;
+        }
+
+        #introductionText .ql-align-justify {
+            text-align: justify;
+        }
     </style>
 </head>
 <body class="midnight-mist-bg">
@@ -153,13 +214,13 @@
             Tô Hải Nhật
         </p>
 
-        <p class="text-base sm:text-lg md:text-xl text-gray-200 mb-8 px-4"
+        <!-- <p class="text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-200 mb-8 px-4"
            data-sal="fade"
            data-sal-delay="400"
            data-sal-duration="600">
             Khoa Công Nghệ Thông Tin<br>
             Trường Đại học Mở TP. Hồ Chí Minh
-        </p>
+        </p> -->
         <!-- Countdown Timer -->
         <div class="flex items-center justify-center w-full gap-2 sm:gap-3 md:gap-4 lg:gap-6 count-down-main px-4"
              data-sal="zoom-in"
@@ -169,7 +230,7 @@
             <div class="timer">
                 <div class="rounded-xl py-2 sm:py-3 px-2 sm:px-3 min-w-[70px] sm:min-w-[90px]
                 flex items-center justify-center flex-col gap-1 aspect-square shadow-lg"
-                style="background: linear-gradient(to right, #6be585, #dd3e54);">
+                     style="background: linear-gradient(to right, #6be585, #dd3e54);">
                     <h3 class="countdown-element days font-manrope font-semibold
                  text-lg sm:text-xl md:text-2xl text-white text-center drop-shadow-md">
                     </h3>
@@ -180,7 +241,7 @@
             <div class="timer">
                 <div class="rounded-xl py-2 sm:py-3 px-2 sm:px-3 min-w-[70px] sm:min-w-[90px]
                 flex items-center justify-center flex-col gap-1 aspect-square shadow-lg"
-                style="background: linear-gradient(to right, #6be585, #dd3e54);">
+                     style="background: linear-gradient(to right, #6be585, #dd3e54);">
                     <h3 class="countdown-element hours font-manrope font-semibold
                  text-lg sm:text-xl md:text-2xl text-white text-center drop-shadow-md">
                     </h3>
@@ -191,7 +252,7 @@
             <div class="timer">
                 <div class="rounded-xl py-2 sm:py-3 px-2 sm:px-3 min-w-[70px] sm:min-w-[90px]
                 flex items-center justify-center flex-col gap-1 aspect-square shadow-lg"
-                style="background: linear-gradient(to right, #6be585, #dd3e54);">
+                     style="background: linear-gradient(to right, #6be585, #dd3e54);">
                     <h3 class="countdown-element minutes font-manrope font-semibold
                  text-lg sm:text-xl md:text-2xl text-white text-center drop-shadow-md">
                     </h3>
@@ -202,7 +263,7 @@
             <div class="timer">
                 <div class="rounded-xl py-2 sm:py-3 px-2 sm:px-3 min-w-[70px] sm:min-w-[90px]
                 flex items-center justify-center flex-col gap-1 aspect-square shadow-lg"
-                style="background: linear-gradient(to right, #6be585, #dd3e54);">
+                     style="background: linear-gradient(to right, #6be585, #dd3e54);">
                     <h3 class="countdown-element seconds font-manrope font-semibold
                  text-lg sm:text-xl md:text-2xl text-white text-center drop-shadow-md">
                     </h3>
@@ -211,18 +272,18 @@
             </div>
         </div>
         <!-- Nội dung sự kiện -->
-        <div class="bg-white rounded-2xl shadow-xl p-8 mb-8 w-full max-w-screen-lg mx-auto mt-8"
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 mb-8 w-full max-w-screen-lg mx-auto mt-8"
              data-sal="slide-up"
              data-sal-delay="500"
              data-sal-duration="700">
-            <div id="introductionText" class="text-lg text-gray-600 mb-8 leading-relaxed text-left">
+            <div id="introductionText" class="text-lg text-gray-600 dark:text-gray-300 mb-8 leading-relaxed text-left">
                 <!-- Nội dung sẽ được load từ API -->
             </div>
         </div>
 
 
         <!-- DateTime & Location Card -->
-        <div class="bg-white rounded-2xl shadow-xl p-8 mb-8 w-full max-w-screen-lg mx-auto"
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 mb-8 w-full max-w-screen-lg mx-auto"
              data-sal="slide-up"
              data-sal-delay="1000"
              data-sal-duration="700">
@@ -235,9 +296,10 @@
                               clip-rule="evenodd"/>
                     </svg>
                     <div>
-                        <h3 class="font-semibold text-gray-800">Thời gian</h3>
-                        <p class="text-gray-600">
-                            13:00 - Thứ 7, 13/12/2025</p>
+                        <h3 class="font-semibold text-gray-800 dark:text-white">Thời gian <span class="text-xs text-gray-500 dark:text-white">(Dự kiến)</span></h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            16:00 hoặc 16:30<br>
+                            Thứ 7, 13/12/2025</p>
                     </div>
                 </div>
 
@@ -249,12 +311,15 @@
                               clip-rule="evenodd"/>
                     </svg>
                     <div>
-                        <h3 class="font-semibold text-gray-800">Địa điểm</h3>
-                        <p class="text-gray-600 text-gray-600 break-words text-sm sm:text-base">
-                            Sảnh chờ<br>
-                            Trường Đại học Mở TP.HCM</p>
-                        <a target="_blank" href="https://maps.app.goo.gl/SBpokiWCAatu3gF5A"
-                           class="text-red-600 text-sm hover:underline">Xem đường đi →</a>
+                        <h3 class="font-semibold text-gray-800 dark:text-white">Địa điểm
+                            <span class="text-xs text-gray-500 dark:text-white">(Nhấp vào để xem vị trí)</span>
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-300 break-words text-sm sm:text-base">
+                            <a target="_blank" href="https://maps.app.goo.gl/SBpokiWCAatu3gF5A"
+                               class="text-red-600 text-sm hover:underline">Sảnh chờ<br>
+                            Trường Đại học Mở TP.HCM<br>
+                            97 Võ Văn Tần, Phường Xuân Hòa (Phường Võ Thị Sáu, Quận 3 cũ)</a>
+                        </p>
                     </div>
                 </div>
                 <!-- Liên lạc -->
@@ -268,9 +333,12 @@
                     </svg>
 
                     <div>
-                        <h3 class="font-semibold text-gray-800">Liên lạc</h3>
-                        <p class="text-gray-600">
-                            <a href="#contact" class="text-red-600 text-sm hover:underline">Nhấn zô dòng này nha</a>
+                        <h3 class="font-semibold text-gray-800 dark:text-white">Liên lạc</h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            <button id="contactLinkBtn"
+                                    class="text-red-600 text-sm hover:underline cursor-pointer bg-transparent border-none">
+                                Nhấp zô dòng này nha
+                            </button>
                         </p>
                     </div>
                 </div>
@@ -284,67 +352,76 @@
                         <path d="M9 17V7h4a3 3 0 0 1 0 6H9"></path>
                     </svg>
                     <div>
-                        <h3 class="font-semibold text-gray-800">Giữ xe</h3>
-                        <p class="text-gray-600 text-gray-600 break-words text-sm sm:text-base">
-                            Trường Đại học Mở TP.HCM (không khuyến khích :))<br>
-                            Công viên Tao Đàn<br>
-                            Cung Văn hóa Lao động<br>
-                            Toà nhà Báo Người Lao Động<br>
-                            Du lịch Hoà Bình<br>
+                        <h3 class="font-semibold text-gray-800 dark:text-white">Giữ xe
+                            <span class="text-xs text-gray-500 dark:text-white">(Nhấp vào để xem vị trí)</span></h3>
+                        <p class="text-gray-600 dark:text-gray-300 break-words text-sm sm:text-base">
+                            <a target="_blank" href="https://maps.app.goo.gl/SBpokiWCAatu3gF5A"
+                               class="text-red-600 text-sm hover:underline">Trường Đại học Mở TP.HCM</a> (không khuyến
+                            khích :))<br>
+                            <a target="_blank" href="https://maps.app.goo.gl/KhRsnSzR1xPEiHPu5"
+                               class="text-red-600 text-sm hover:underline">Công viên Tao Đàn</a><br>
+                            <a target="_blank" href="https://maps.app.goo.gl/nieaPYb318mX2GXh8"
+                               class="text-red-600 text-sm hover:underline">Cung Văn hóa Lao động</a><br>
+                            <a target="_blank" href="https://maps.app.goo.gl/1RRCXKGWMHXgBv9e6"
+                               class="text-red-600 text-sm hover:underline">Toà nhà Báo Người Lao Động</a><br>
+                            <a target="_blank" href="https://maps.app.goo.gl/WLPMX6hoUxvY3GEC6"
+                               class="text-red-600 text-sm hover:underline">Du lịch Hoà Bình</a><br>
                             Các địa điểm giữ xe dọc đường Võ Văn Tần<br>
                         </p>
-                        <a target="_blank" href="https://maps.app.goo.gl/SBpokiWCAatu3gF5A"
-                           class="text-red-600 text-sm hover:underline">Xem đường đi →</a>
                     </div>
                 </div>
             </div>
         </div>
 
-        
+
     </div>
 </section>
 
 <!-- RSVP Form Section -->
 <section class="container mx-auto px-4 py-4 mt-0">
-    <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-xl p-8"
+    <div class="max-w-2xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8"
          data-sal="slide-up"
          data-sal-duration="700">
-        <h2 class="text-2xl sm:text-3xl font-bold text-red-600 mb-6 text-center px-4">
-<!--            Xác Nhận Tham Dự-->
+        <h2 class="text-2xl sm:text-3xl font-bold text-red-600 dark:text-white mb-6 text-center px-4">
+           Lời chúc của bạn
         </h2>
 
         <form id="rsvpForm" class="space-y-6">
             <!-- Name -->
             <div>
-                <label for="rsvp_name" class="block text-sm font-medium text-gray-700">Họ và tên</label>
-                <input id="rsvp_name" name="full_name" type="text" required
+                <label for="rsvp_name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Họ và
+                    tên</label>
+                <input placeholder="Bắt buộc" id="rsvp_name" name="full_name" type="text" required
                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-green-500 focus:border-green-500">
             </div>
 
             <div>
-                <label for="rsvp_email" class="block text-sm font-medium text-gray-700">Email</label>
-                <input placeholder="Nhập đúng để nhận thông báo qua email nhé" id="rsvp_email" name="email" type="email" required
+                <label for="rsvp_email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
+                <input placeholder="Nhập đúng để nhận thông báo qua email nhé" id="rsvp_email" name="email" type="email"
+                       required
                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-green-500 focus:border-green-500">
             </div>
 
             <div>
-                <label for="rsvp_phone" class="block text-sm font-medium text-gray-700">Số điện thoại</label>
-                <input placeholder="Thích thì điền còn hong thì thoi" id="rsvp_phone" name="phone" type="tel"
+                <label for="rsvp_phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Số điện
+                    thoại</label>
+                <input placeholder="Hong bắt buộc" id="rsvp_phone" name="phone" type="tel"
                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-green-500 focus:border-green-500">
             </div>
             <div>
-                <label for="message" class="block text-sm font-medium text-gray-700">Lời chúc</label>
+                <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Lời chúc</label>
                 <textarea id="message" name="message" rows="3"
                           class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-green-500 focus:border-green-500"
-                          placeholder="Như cái trên :)"></textarea>
+                          placeholder="Cũng hong bắt buộc"></textarea>
             </div>
             <div>
-                <label for="attendance" class="block text-sm font-medium text-gray-700">Bạn sẽ sắp xếp công việc và đến
-                    chung vui với mình chứ?</label>
+                <label for="attendance" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Bạn sẽ sắp
+                    xếp công việc và đến
+                    chung vui cùng mình chứ?</label>
                 <select id="attendance" name="attendance"
                         class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-green-500 focus:border-green-500"
                         required>
-                    <option class="hidden" selected disabled></option>
+                    <option class="hidden" value="" selected disabled>Cái này thì bắt buộc</option>
                     <option value="yes">Có</option>
                     <option id="option-no" value="no">
                         Không/Khong/Khum/Khom/K/Kh/Khg/Ko/Kg/Hông/Hong/Hog/Hok/Hk/Hum/Hăm/Hem
@@ -466,17 +543,17 @@
 <!-- RSVP Messages Section with Infinite Scroll -->
 <section class="container mx-auto px-4 py-12">
     <div class="max-w-3xl mx-auto px-4">
-        <div class="bg-white rounded-lg shadow-lg p-6"
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6"
              data-sal="slide-up"
              data-sal-duration="700">
             <!-- Header -->
-            <div class="flex items-center justify-between mb-6 pb-4 border-b">
-                <h2 class="text-2xl font-bold text-gray-800 flex items-center gap-2">
+            <div class="flex items-center justify-between mb-6 pb-4 border-b dark:border-gray-700">
+                <h2 class="text-2xl font-bold text-red-600 dark:text-white flex items-center gap-2">
                     💬 Lời chúc từ mọi người
                 </h2>
-<!--                <span id="messageCount" class="text-sm text-green-700 bg-green-100 px-3 py-1 rounded-full">-->
-<!--                    0 tin nhắn-->
-<!--                </span>-->
+                <!--                <span id="messageCount" class="text-sm text-green-700 bg-green-100 px-3 py-1 rounded-full">-->
+                <!--                    0 tin nhắn-->
+                <!--                </span>-->
             </div>
 
             <!-- Messages Container với Infinite Scroll -->
@@ -484,7 +561,7 @@
                 <!-- Loading State -->
                 <div id="loadingMessages" class="text-center py-8">
                     <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
-                    <p class="text-gray-500 mt-2">Đang tải lời chúc...</p>
+                    <p class="text-gray-500 dark:text-gray-400 mt-2">Đang tải lời chúc...</p>
                 </div>
 
                 <!-- Empty State -->
@@ -614,7 +691,118 @@
         threshold: 0.1,
         once: true
     });
+
+    // Contact Link Tooltip Handler
+    document.addEventListener('DOMContentLoaded', () => {
+        const contactBtn = document.getElementById('contactLinkBtn');
+        const tooltip = document.getElementById('contactTooltip');
+
+        if (contactBtn && tooltip) {
+            contactBtn.addEventListener('click', () => {
+                // Show tooltip
+                tooltip.classList.remove('hidden');
+
+                // Scroll to footer contact section
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                    contactSection.scrollIntoView({behavior: 'smooth', block: 'center'});
+                }
+
+                // Hide tooltip after 5 seconds
+                setTimeout(() => {
+                    tooltip.classList.add('hidden');
+                }, 5000);
+            });
+
+            // Click outside to hide tooltip
+            document.addEventListener('click', (e) => {
+                if (!contactBtn.contains(e.target) && !tooltip.contains(e.target)) {
+                    tooltip.classList.add('hidden');
+                }
+            });
+        }
+    });
 </script>
+<!-- Fixed Tooltip pointing to footer contact -->
+<div id="contactTooltip"
+     class="hidden fixed bottom-16 sm:bottom-20 left-1/2 transform -translate-x-1/2 z-[999] mx-4 max-w-[90vw]">
+    <div class="bg-red-600 text-white px-4 sm:px-5 py-2 sm:py-3 rounded-lg shadow-2xl text-xs sm:text-sm text-center">
+        <span class="animate-pulse">✨</span> Liên lạc với mình nha! <span class="animate-pulse">✨</span>
+    </div>
+    <!-- Arrow pointing down to footer -->
+    <div class="flex justify-center animate-bounce">
+        <div class="w-0 h-0 border-l-[10px] sm:border-l-[12px] border-r-[10px] sm:border-r-[12px] border-t-[10px] sm:border-t-[12px] border-l-transparent border-r-transparent border-t-red-600"></div>
+    </div>
+</div>
+
+<!-- Floating Music Player -->
+<div id="musicContainer" class="fixed bottom-4 right-4 z-[998]">
+    <!-- Toggle Button -->
+    <button id="musicToggle" 
+            class="w-14 h-14 bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300"
+            title="Phát/Tắt nhạc">
+        <!-- Play Icon (default) -->
+        <svg id="playIcon" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z"/>
+        </svg>
+        <!-- Pause Icon (hidden) -->
+        <svg id="pauseIcon" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+        </svg>
+    </button>
+    
+    <!-- Hidden YouTube Player -->
+    <div id="youtubePlayer" class="hidden absolute bottom-16 right-0 w-1 h-1 overflow-hidden"></div>
+</div>
+
+<!-- YouTube IFrame API -->
+<script>
+    // Load YouTube IFrame API
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    var player;
+    var isPlaying = false;
+
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('youtubePlayer', {
+            height: '1',
+            width: '1',
+            videoId: 'MuueoBfnodk',
+            playerVars: {
+                'autoplay': 0,
+                'loop': 1,
+                'playlist': 'MuueoBfnodk'
+            },
+            events: {
+                'onReady': onPlayerReady
+            }
+        });
+    }
+
+    function onPlayerReady(event) {
+        const toggleBtn = document.getElementById('musicToggle');
+        const playIcon = document.getElementById('playIcon');
+        const pauseIcon = document.getElementById('pauseIcon');
+        toggleBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                player.pauseVideo();
+                playIcon.classList.remove('hidden');
+                pauseIcon.classList.add('hidden');
+                toggleBtn.classList.remove('animate-pulse');
+            } else {
+                player.playVideo();
+                playIcon.classList.add('hidden');
+                pauseIcon.classList.remove('hidden');
+                toggleBtn.classList.add('animate-pulse');
+            }
+            isPlaying = !isPlaying;
+        });
+    }
+</script>
+
 {{footer}}
 </body>
 </html>
