@@ -13,8 +13,8 @@ import (
 var DB *gorm.DB
 
 func ConnectDB() {
-	//dsn := "host=localhost user=postgres password=hainhat2003 dbname=graduation_invitation port=5432 sslmode=disable TimeZone=Asia/Ho_Chi_Minh"
-	dsn := "host=dpg-d4nupier433s73eeqou0-a user=gra_inv_user password=bhrUNR5HobTAZq4kDTD81GEuy3Wp9tZi dbname=gra_inv port=5432 sslmode=disable"
+	dsn := "host=localhost user=postgres password=hainhat2003 dbname=graduation_invitation port=5432 sslmode=disable TimeZone=Asia/Ho_Chi_Minh"
+	//dsn := "host=dpg-d4nupier433s73eeqou0-a user=gra_inv_user password=bhrUNR5HobTAZq4kDTD81GEuy3Wp9tZi dbname=gra_inv port=5432 sslmode=disable"
 
 	var err error
 	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{
@@ -27,7 +27,6 @@ func ConnectDB() {
 
 	fmt.Println("✅ Connected to PostgreSQL")
 
-	// Auto migrate tables
 	err = DB.AutoMigrate(
 		&models.User{},
 		&models.RSVP{},
