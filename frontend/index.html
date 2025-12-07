@@ -59,8 +59,11 @@
         } */
 
         .mainSVG {
-            width: 90%;
-            height: 90%;
+            width: 100%;
+            max-width: 1200px;
+            height: auto;
+            margin: 5px auto;
+            display: block;
             visibility: hidden;
         }
 
@@ -68,7 +71,7 @@
             font-family: "Mountains of Christmas", serif;
             font-weight: 700;
             font-style: normal;
-            font-size: 1.7rem;
+            font-size: 2.8rem;
             letter-spacing: 5px;
         }
 
@@ -94,14 +97,6 @@
             opacity: 0;
             letter-spacing: 1px;
         } */
-
-        .mainSVG {
-            width: 100%;
-            max-width: 600px;
-            height: auto;
-            margin: 20px auto;
-            display: block;
-        }
 
         /* Light mode - Name gradient */
         .name {
@@ -231,52 +226,38 @@
             Trường Đại học Mở TP. Hồ Chí Minh
         </p> -->
         <!-- Countdown Timer -->
-        <div class="flex items-center justify-center w-full gap-2 sm:gap-3 md:gap-4 lg:gap-6 count-down-main px-4"
+        <div class="w-full max-w-4xl mx-auto h-auto rounded-2xl flex gap-6 flex-col items-center justify-center py-8 px-4"
              data-sal="zoom-in"
              data-sal-delay="700"
              data-sal-duration="800">
-            <!-- Ngày -->
-            <div class="timer">
-                <div class="rounded-xl py-2 sm:py-3 px-2 sm:px-3 min-w-[70px] sm:min-w-[90px]
-                flex items-center justify-center flex-col gap-1 aspect-square shadow-lg"
-                     style="background: linear-gradient(to right, #6be585, #dd3e54);">
-                    <h3 class="countdown-element days font-manrope font-semibold
-                 text-lg sm:text-xl md:text-2xl text-white text-center drop-shadow-md">
-                    </h3>
-                    <p class="text-sm sm:text-base font-manrope font-normal text-white mt-1 text-center w-full">Ngày</p>
+            <div class="flex items-start justify-center w-full gap-1 sm:gap-4 count-down-main">
+                <!-- Ngày -->
+                <div class="timer">
+                    <div class="rounded-xl bg-black/25 backdrop-blur-sm py-3 min-w-[60px] sm:min-w-[96px] flex items-center justify-center flex-col gap-1 px-3">
+                        <h3 class="countdown-element days font-manrope font-semibold text-xl sm:text-2xl text-white text-center"></h3>
+                        <p class="text-sm sm:text-lg uppercase font-normal text-white mt-1 text-center w-full">Ngày</p>
+                    </div>
                 </div>
-            </div>
-            <!-- Giờ -->
-            <div class="timer">
-                <div class="rounded-xl py-2 sm:py-3 px-2 sm:px-3 min-w-[70px] sm:min-w-[90px]
-                flex items-center justify-center flex-col gap-1 aspect-square shadow-lg"
-                     style="background: linear-gradient(to right, #6be585, #dd3e54);">
-                    <h3 class="countdown-element hours font-manrope font-semibold
-                 text-lg sm:text-xl md:text-2xl text-white text-center drop-shadow-md">
-                    </h3>
-                    <p class="text-sm sm:text-base font-manrope font-normal text-white mt-1 text-center w-full">Giờ</p>
+                <!-- Giờ -->
+                <div class="timer">
+                    <div class="rounded-xl bg-black/25 backdrop-blur-sm py-3 min-w-[60px] sm:min-w-[96px] flex items-center justify-center flex-col gap-1 px-3">
+                        <h3 class="countdown-element hours font-manrope font-semibold text-xl sm:text-2xl text-white text-center"></h3>
+                        <p class="text-sm sm:text-lg uppercase font-normal text-white mt-1 text-center w-full">Giờ</p>
+                    </div>
                 </div>
-            </div>
-            <!-- Phút -->
-            <div class="timer">
-                <div class="rounded-xl py-2 sm:py-3 px-2 sm:px-3 min-w-[70px] sm:min-w-[90px]
-                flex items-center justify-center flex-col gap-1 aspect-square shadow-lg"
-                     style="background: linear-gradient(to right, #6be585, #dd3e54);">
-                    <h3 class="countdown-element minutes font-manrope font-semibold
-                 text-lg sm:text-xl md:text-2xl text-white text-center drop-shadow-md">
-                    </h3>
-                    <p class="text-sm sm:text-base font-manrope font-normal text-white mt-1 text-center w-full">Phút</p>
+                <!-- Phút -->
+                <div class="timer">
+                    <div class="rounded-xl bg-black/25 backdrop-blur-sm py-3 min-w-[60px] sm:min-w-[96px] flex items-center justify-center flex-col gap-1 px-3">
+                        <h3 class="countdown-element minutes font-manrope font-semibold text-xl sm:text-2xl text-white text-center"></h3>
+                        <p class="text-sm sm:text-lg uppercase font-normal text-white mt-1 text-center w-full">Phút</p>
+                    </div>
                 </div>
-            </div>
-            <!-- Giây -->
-            <div class="timer">
-                <div class="rounded-xl py-2 sm:py-3 px-2 sm:px-3 min-w-[70px] sm:min-w-[90px]
-                flex items-center justify-center flex-col gap-1 aspect-square shadow-lg"
-                     style="background: linear-gradient(to right, #6be585, #dd3e54);">
-                    <h3 class="countdown-element seconds font-manrope font-semibold
-                 text-lg sm:text-xl md:text-2xl text-white text-center drop-shadow-md">
-                    </h3>
-                    <p class="text-sm sm:text-base font-manrope font-normal text-white mt-1 text-center w-full">Giây</p>
+                <!-- Giây -->
+                <div class="timer">
+                    <div class="rounded-xl bg-black/25 backdrop-blur-sm py-3 min-w-[60px] sm:min-w-[96px] flex items-center justify-center flex-col gap-1 px-3">
+                        <h3 class="countdown-element seconds font-manrope font-semibold text-xl sm:text-2xl text-white text-center"></h3>
+                        <p class="text-sm sm:text-lg uppercase font-normal text-white mt-1 text-center w-full">Giây</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -326,7 +307,7 @@
                         </h3>
                         <p class="text-gray-600 dark:text-gray-300 break-words text-sm sm:text-base">
                             <a target="_blank" href="https://maps.app.goo.gl/SBpokiWCAatu3gF5A"
-                               class="text-red-600 text-sm hover:underline">Sảnh chờ<br>
+                               class="text-red-600 text-base hover:underline">Sảnh chờ<br>
                                 Trường Đại học Mở TP.HCM<br>
                                 97 Võ Văn Tần, Phường Xuân Hòa (Phường Võ Thị Sáu, Quận 3 cũ)</a>
                         </p>
@@ -346,7 +327,7 @@
                         <h3 class="font-semibold text-gray-800 dark:text-white">Liên lạc</h3>
                         <p class="text-gray-600 dark:text-gray-300">
                             <button id="contactLinkBtn"
-                                    class="text-red-600 text-sm hover:underline cursor-pointer bg-transparent border-none">
+                                    class="text-red-600 text-base hover:underline cursor-pointer bg-transparent border-none">
                                 Nhấp zô dòng này nha
                             </button>
                         </p>
@@ -366,16 +347,15 @@
                             <span class="text-xs text-gray-500 dark:text-white">(Nhấp vào để xem vị trí)</span></h3>
                         <p class="text-gray-600 dark:text-gray-300 break-words text-sm sm:text-base">
                             <a target="_blank" href="https://maps.app.goo.gl/SBpokiWCAatu3gF5A"
-                               class="text-red-600 text-sm hover:underline">Trường Đại học Mở TP.HCM</a> (không khuyến
-                            khích :))<br>
+                               class="text-red-600 text-base hover:underline">Trường Đại học Mở TP.HCM</a> (xe rất đông)<br>
                             <a target="_blank" href="https://maps.app.goo.gl/KhRsnSzR1xPEiHPu5"
-                               class="text-red-600 text-sm hover:underline">Công viên Tao Đàn</a><br>
+                               class="text-red-600 text-base hover:underline">Công viên Tao Đàn</a><br>
                             <a target="_blank" href="https://maps.app.goo.gl/nieaPYb318mX2GXh8"
-                               class="text-red-600 text-sm hover:underline">Cung Văn hóa Lao động</a><br>
+                               class="text-red-600 text-base hover:underline">Cung Văn hóa Lao động</a><br>
                             <a target="_blank" href="https://maps.app.goo.gl/1RRCXKGWMHXgBv9e6"
-                               class="text-red-600 text-sm hover:underline">Toà nhà Báo Người Lao Động</a><br>
+                               class="text-red-600 text-base hover:underline">Toà nhà Báo Người Lao Động</a><br>
                             <a target="_blank" href="https://maps.app.goo.gl/WLPMX6hoUxvY3GEC6"
-                               class="text-red-600 text-sm hover:underline">Du lịch Hoà Bình</a><br>
+                               class="text-red-600 text-base hover:underline">Du lịch Hoà Bình</a><br>
                             Các địa điểm giữ xe dọc đường Võ Văn Tần<br>
                         </p>
                     </div>
@@ -539,7 +519,7 @@
                     <circle class="sparkle" fill="url(#dotGrad)" cx="0" cy="0" r="50"/>
 
                 </g>
-                <foreignObject x="0" y="550" width="800" height="250">
+                <foreignObject x="0" y="535" width="800" height="80">
               <span class="mountains-of-christmas-bold">
                 Merry Christmas! 🎄❄🎅
               </span>
