@@ -16,18 +16,32 @@ import (
 // POST /api/rsvp
 func SubmitRSVP(c *gin.Context) {
 	var req struct {
-		GuestName  string `json:"guest_name"`
-		GuestEmail string `json:"guest_email"`
-		GuestPhone string `json:"guest_phone"`
-		Status     string `json:"status"`
-		GuestCount int    `json:"guest_count"`
-		Message    string `json:"message"`
+		GuestName      string `json:"guest_name"`
+		GuestEmail     string `json:"guest_email"`
+		GuestPhone     string `json:"guest_phone"`
+		Status         string `json:"status"`
+		GuestCount     int    `json:"guest_count"`
+		Message        string `json:"message"`
+		RecaptchaToken string `json:"recaptcha_token"`
 	}
 
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"success": false,
 			"message": "Dữ liệu gửi lên không hợp lệ.",
+		})
+		return
+	}
+
+	// ✅ Verify reCAPTCHA token
+	valid, err := utils.VerifyRecaptcha(req.RecaptchaToken)
+	if err != nil {
+		log.Printf("❌ reCAPTCHA verification error: %v", err)
+	}
+	if !valid {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"success": false,
+			"message": "Xác minh reCAPTCHA thất bại. Vui lòng thử lại.",
 		})
 		return
 	}

@@ -14,7 +14,7 @@ func SetupRoutes(r *gin.Engine) {
 		api.POST("/login", controllers.Login)
 		api.POST("/register", controllers.Register)
 		api.GET("/check-email", controllers.CheckEmail)
-		api.POST("/rsvp", controllers.SubmitRSVP)
+		api.POST("/rsvp", middleware.RSVPRateLimit(), controllers.SubmitRSVP)
 		api.GET("/rsvp/stats", controllers.GetStats)
 		api.GET("/rsvp/messages", controllers.GetRSVPMessages)
 		api.POST("/refresh", controllers.RefreshToken)

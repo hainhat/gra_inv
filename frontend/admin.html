@@ -120,7 +120,13 @@
         <!-- RSVPs Tab -->
         <div id="rsvpsTab" class="tab-content hidden">
             <div class="flex justify-between items-center mb-4">
-                <h2 class="text-2xl font-bold">RSVPs Management</h2>
+                <div class="flex items-center gap-4">
+                    <h2 class="text-2xl font-bold">RSVPs Management</h2>
+                    <button id="deleteSelectedBtn" onclick="deleteSelectedRSVPs()" 
+                            class="hidden bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+                        🗑️ Delete Selected (<span id="selectedCount">0</span>)
+                    </button>
+                </div>
                 <select id="statusFilter" class="border rounded px-4 py-2">
                     <option value="">All Status</option>
                     <option value="yes">Yes</option>
@@ -132,6 +138,10 @@
                 <table class="w-full">
                     <thead class="bg-gray-50">
                     <tr>
+                        <th class="px-6 py-3 text-left">
+                            <input type="checkbox" id="selectAllRsvps" onchange="toggleSelectAllRSVPs()" 
+                                   class="w-4 h-4 rounded border-gray-300">
+                        </th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
@@ -366,8 +376,7 @@
         }
     }
 
-    // Load RSVPs
-    async function loadRSVPs(page = 1) {
+        async function loadRSVPs(page = 1) {
         currentRSVPPage = page;
         const status = document.getElementById('statusFilter').value;
         try {
@@ -380,6 +389,10 @@
                 const tbody = document.getElementById('rsvpsTableBody');
                 tbody.innerHTML = data.data.map(r => `
                         <tr>
+                            <td class="px-6 py-4">
+                                <input type="checkbox" class="rsvp-checkbox w-4 h-4 rounded border-gray-300" 
+                                       data-id="${r.id}" onchange="updateSelectedCount()">
+                            </td>
                             <td class="px-6 py-4">
                                 <button onclick="editRSVP(${r.id})" class="text-blue-600 hover:text-blue-800 mr-3">Edit</button>
                                 <button onclick="deleteRSVP(${r.id})" class="text-red-600 hover:text-red-800">Delete</button>
@@ -408,6 +421,10 @@
                         </tr>
                     `).join('');
 
+                // Reset Select All checkbox
+                document.getElementById('selectAllRsvps').checked = false;
+                updateSelectedCount();
+                
                 renderPagination('rsvpsPagination', data.pagination, loadRSVPs);
             }
         } catch (err) {
@@ -416,6 +433,66 @@
     }
 
     document.getElementById('statusFilter').addEventListener('change', () => loadRSVPs(1));
+
+    // Toggle Select All RSVPs
+    function toggleSelectAllRSVPs() {
+        const selectAll = document.getElementById('selectAllRsvps').checked;
+        document.querySelectorAll('.rsvp-checkbox').forEach(cb => {
+            cb.checked = selectAll;
+        });
+        updateSelectedCount();
+    }
+
+    // Update selected count and show/hide Delete button
+    function updateSelectedCount() {
+        const checked = document.querySelectorAll('.rsvp-checkbox:checked').length;
+        document.getElementById('selectedCount').textContent = checked;
+        const deleteBtn = document.getElementById('deleteSelectedBtn');
+        if (checked > 0) {
+            deleteBtn.classList.remove('hidden');
+        } else {
+            deleteBtn.classList.add('hidden');
+        }
+    }
+
+    // Delete selected RSVPs
+    async function deleteSelectedRSVPs() {
+        const selectedIds = Array.from(document.querySelectorAll('.rsvp-checkbox:checked'))
+            .map(cb => cb.dataset.id);
+        
+        if (selectedIds.length === 0) {
+            alert('Vui lòng chọn ít nhất 1 RSVP để xóa');
+            return;
+        }
+
+        if (!confirm(`Bạn có chắc chắn muốn xóa ${selectedIds.length} RSVP đã chọn?`)) {
+            return;
+        }
+
+        let successCount = 0;
+        let failCount = 0;
+
+        for (const id of selectedIds) {
+            try {
+                const res = await fetch(`${API_URL}/admin/rsvps/${id}`, {
+                    method: 'DELETE',
+                    headers: {'Authorization': `Bearer ${token}`}
+                });
+                const data = await res.json();
+                if (data.success) {
+                    successCount++;
+                } else {
+                    failCount++;
+                }
+            } catch (err) {
+                failCount++;
+            }
+        }
+
+        alert(`Đã xóa ${successCount} RSVP thành công${failCount > 0 ? `, ${failCount} thất bại` : ''}`);
+        loadRSVPs(currentRSVPPage);
+    }
+
 
     // Pagination
     function renderPagination(elementId, pagination, loadFunc) {

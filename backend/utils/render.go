@@ -2,6 +2,7 @@ package utils
 
 import (
 	"io/ioutil"
+	"os"
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -28,6 +29,11 @@ func RenderHTMLWithPartials(c *gin.Context, htmlPath string) {
 		head, _ := ioutil.ReadFile("./frontend/partials/head.html")
 		html = strings.Replace(html, "{{head}}", string(head), 1)
 	}
+
+	// Replace reCAPTCHA site key from environment variable
+	recaptchaSiteKey := os.Getenv("RECAPTCHA_SITE_KEY")
+	html = strings.ReplaceAll(html, "{{.RecaptchaSiteKey}}", recaptchaSiteKey)
+
 	c.Header("Content-Type", "text/html; charset=utf-8")
 	c.String(200, html)
 }

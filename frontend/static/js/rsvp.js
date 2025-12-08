@@ -65,6 +65,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
+        // ✅ Execute reCAPTCHA v3 and get token
+        let recaptchaToken = '';
+        const siteKey = window.RECAPTCHA_SITE_KEY;
+        
+        if (siteKey && typeof grecaptcha !== 'undefined') {
+            try {
+                await new Promise((resolve) => grecaptcha.ready(resolve));
+                recaptchaToken = await grecaptcha.execute(siteKey, { action: 'submit_rsvp' });
+            } catch (err) {
+                console.error('❌ reCAPTCHA error:', err);
+            }
+        }
+
         // Thu thập dữ liệu RSVP
         const rsvpData = {
             guest_name: nameInput ? nameInput.value.trim() : '',
@@ -72,7 +85,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             guest_phone: phoneInput ? phoneInput.value.trim() : '',
             status: statusInput ? statusInput.value : 'yes',
             message: messageInput ? messageInput.value.trim() : '',
-            guest_count: 1
+            guest_count: 1,
+            recaptcha_token: recaptchaToken
         };
 
         // Kiểm tra dữ liệu cơ bản
@@ -133,7 +147,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                     setTimeout(window.loadRSVPStats, 500);
                 }
             } else {
-                alert('❌ ' + (data.message || 'Không thể gửi RSVP.'));
+                // Hiển thị thông báo lỗi (bao gồm rate limit message)
+                alert('❌ ' + (data.message || 'Không thể gửi.'));
             }
         } catch (err) {
             console.error('RSVP Error:', err);
