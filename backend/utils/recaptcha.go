@@ -2,6 +2,7 @@ package utils
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
 	"net/url"
 	"os"
@@ -24,10 +25,12 @@ func VerifyRecaptcha(token string) (bool, error) {
 	secretKey := os.Getenv("RECAPTCHA_SECRET_KEY")
 	if secretKey == "" {
 		// If no secret key configured, skip verification (for development)
+		log.Println("⚠️ reCAPTCHA: No secret key configured, skipping verification")
 		return true, nil
 	}
 
 	if token == "" {
+		log.Println("❌ reCAPTCHA: Empty token received")
 		return false, nil
 	}
 
@@ -49,11 +52,17 @@ func VerifyRecaptcha(token string) (bool, error) {
 		return false, err
 	}
 
+	// Log the result for debugging
+	log.Printf("🔐 reCAPTCHA: success=%v, score=%.2f, action=%s, hostname=%s",
+		result.Success, result.Score, result.Action, result.Hostname)
+
 	// Check if verification was successful and score is acceptable
 	// Score >= 0.5 is considered human (as recommended by Google)
 	if result.Success && result.Score >= 0.5 {
+		log.Println("✅ reCAPTCHA: Verification PASSED")
 		return true, nil
 	}
 
+	log.Printf("❌ reCAPTCHA: Verification FAILED (score too low or errors: %v)", result.ErrorCodes)
 	return false, nil
 }
